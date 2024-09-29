@@ -87,15 +87,12 @@ func (p *PodMapper) Process(metrics [][]Metric, sysInfo SystemInfo) error {
 			if err != nil {
 				return err
 			}
-			if !p.Config.UseOldNamespace {
-				metrics[i][j].Attributes[podAttribute] = deviceToPod[deviceId].Name
-				metrics[i][j].Attributes[namespaceAttribute] = deviceToPod[deviceId].Namespace
-				metrics[i][j].Attributes[containerAttribute] = deviceToPod[deviceId].Container
-			} else {
-				metrics[i][j].Attributes[oldPodAttribute] = deviceToPod[deviceId].Name
-				metrics[i][j].Attributes[oldNamespaceAttribute] = deviceToPod[deviceId].Namespace
-				metrics[i][j].Attributes[oldContainerAttribute] = deviceToPod[deviceId].Container
-			}
+			metrics[i][j].Attributes[podAttribute] = deviceToPod[deviceId].Name
+			metrics[i][j].Attributes[namespaceAttribute] = deviceToPod[deviceId].Namespace
+			metrics[i][j].Attributes[containerAttribute] = deviceToPod[deviceId].Container
+			metrics[i][j].Attributes[oldPodAttribute] = deviceToPod[deviceId].Name
+			metrics[i][j].Attributes[oldNamespaceAttribute] = deviceToPod[deviceId].Namespace
+			metrics[i][j].Attributes[oldContainerAttribute] = deviceToPod[deviceId].Container
 		}
 	}
 

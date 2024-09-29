@@ -25,6 +25,27 @@ import (
 	"github.com/NVIDIA/go-dcgm/pkg/dcgm"
 )
 
+/*
+DCGM_FI_DEV_GPU_UTIL {
+    gpu="0",
+    uuid="GPU-b7bff057-cd86-baa2-620b-0e660d32a689",
+    device="nvidia0",
+    modelName="NVIDIA GeForce RTX 4090",
+    Hostname="10.202.5.103",
+    DCGM_FI_DRIVER_VERSION="535.54.03",
+    job_node_name="10.202.5.103",
+    job_pod_container_name="question-rank",
+    job_pod_name="question-rank-59bc9c675c-nfqqj",
+    job_pod_namespace="paidui",
+    node_name="10.202.5.103",
+    pod_container_name="question-rank",
+    pod_name="question-rank-59bc9c675c-nfqqj",
+    pod_namespace="paidui",
+    resource="nvidia.com/gpu"
+} 0
+
+*/
+
 var (
 	SkipDCGMValue   = "SKIPPING DCGM VALUE"
 	FailedToConvert = "ERROR - FAILED TO CONVERT TO STRING"
@@ -34,13 +55,13 @@ var (
 	MIG_UUID_PREFIX         = "MIG-"
 
 	// Note standard resource attributes
-	podAttribute       = "pod"
-	namespaceAttribute = "namespace"
-	containerAttribute = "container"
+	podAttribute       = "job_pod_name"
+	namespaceAttribute = "job_pod_namespace"
+	containerAttribute = "job_pod_container_name"
 
 	oldPodAttribute       = "pod_name"
 	oldNamespaceAttribute = "pod_namespace"
-	oldContainerAttribute = "container_name"
+	oldContainerAttribute = "pod_container_name"
 
 	undefinedConfigMapData = "none"
 )
